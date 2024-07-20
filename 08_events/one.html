@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body style="background-color: #212121;">
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: #212121;" href="https://google.com" id="google"><img src="./pw-1.png" alt=""></a></li>
+        </ul>
+   </div>
+</body>
+
+<script>
+/*     document.getElementById('owl').onclick = ()=>{
+        alert('owl clicked again👌')
+    } */
+/*     document.getElementById('owl').addEventListener('click', function(e){
+        console.log(e)
+        alert('oh man! u clicked again')
+    }) */
+    // type, timestamp, defaultPrevented
+    // target, toElement, srcElement currTarget
+    // client, clientY, ScreenX, ScreenY
+    // altkey, ctrlkey, shiftkey, keyCode
+    document.getElementById('images').addEventListener('click', function(){
+        console.log('images clicked')
+    }, false)
+/*     document.getElementById('japan').addEventListener('click', function(e){
+        e.stopPropagation();
+        console.log('japan clicked')
+    }, false) */
+    document.getElementById('google').addEventListener('click', 
+        function(e){
+            e.stopPropagation()
+            e.preventDefault()
+            console.log("google clicked")
+            let removeElement = e.target.parentNode;
+            removeElement.remove()
+        }
+    )
+
+    document.querySelector('#images').addEventListener('click', function(e){
+        console.log('event', e.target.parentNode
+        )
+        let removeIt = e.target.parentNode
+        removeIt.remove()
+    }, false)
+
+</script>
+</html>
