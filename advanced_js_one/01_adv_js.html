@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advanced JS part-01</title>
+  </head>
+  <body style="background-color: #2f2f2f">
+    <table style="color: white">
+      <thead>
+        <tr>
+          <th>Value</th>
+          <th>State</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>0</code></td>
+          <td><code>UNSENT</code></td>
+          <td>Client has been created. <code>open()</code> not called yet.</td>
+        </tr>
+        <tr>
+          <td><code>1</code></td>
+          <td><code>OPENED</code></td>
+          <td><code>open()</code> has been called.</td>
+        </tr>
+        <tr>
+          <td><code>2</code></td>
+          <td><code>HEADERS_RECEIVED</code></td>
+          <td>
+            <code>send()</code> has been called, and headers and status are
+            available.
+          </td>
+        </tr>
+        <tr>
+          <td><code>3</code></td>
+          <td><code>LOADING</code></td>
+          <td>Downloading; <code>responseText</code> holds partial data.</td>
+        </tr>
+        <tr>
+          <td><code>4</code></td>
+          <td><code>DONE</code></td>
+          <td>The operation is complete.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button id="sendbutton">SEND</button>
+  </body>
+
+  <script>
+    const requestURL = "https://api.github.com/users/Amanpatel2002-g";
+    const xml = new XMLHttpRequest();
+    xml.open("GET", requestURL);
+    let data = null;
+    xml.onreadystatechange = function () {
+      console.log(xml.readyState);
+      if (xml.readyState === 4) {
+        data = JSON.parse(this.responseText);
+        // console.log(data);
+        console.log("came here");
+        const img = data.avatar_url;
+        const p1 = document.createElement('p')
+        const p2 = document.createElement('p')
+        p1.innerHTML = `followers are: ${data.followers}`
+        p2.innerHTML = `following are: ${data.following}`
+        p1.style.color = 'white'
+        p2.style.color = 'white'
+        const imgageElement = document.createElement("img");
+        imgageElement.src = img;
+        imgageElement.style.width = "200px";
+        imgageElement.style.height = "200px";
+        
+        document.querySelector("body").appendChild(imgageElement);
+        document.querySelector("body").appendChild(p1);
+        document.querySelector("body").appendChild(p2);
+      }
+    };
+
+    document
+      .getElementById("sendbutton")
+      .addEventListener("click", function (e) {
+        xml.send();
+      });
+  </script>
+</html>

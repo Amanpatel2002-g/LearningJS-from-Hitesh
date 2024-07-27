@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>chai aur code</title>
+  </head>
+  <body>
+    <div>
+      <h1 id="heading">Chai aur code</h1>
+      <button id="start">start</button>
+      <button id="stop">stop</button>
+    </div>
+  </body>
+  <script>
+    function getRandomColor() {
+      const letters = "0123456789ABCDEF";
+      let color = "#";
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+    /*
+    const printSomething = function (st) {
+      console.log("print something after 2000 milliseconds", st);
+      document.getElementById("heading").innerHTML = `This is javascript ${st}`;
+    };
+    let setTimeoutReference = null;
+
+    
+    document.getElementById('start').addEventListener('click', function(e){
+        timeout = 5000
+        console.log("came here inside start event listener");
+        setTimeoutReference =  setTimeout(printSomething, timeout, "Aman")
+    })
+    document.getElementById('stop').addEventListener('click', function(e){
+        console.log('cleared the stuff');
+        if(setTimeoutReference!==null){
+            clearTimeout(setTimeoutReference)
+            document.getElementById('heading').innerHTML = "chai aur code(hasn't changed yet)"
+        }
+    })
+    */
+
+    /*Project 1*/
+
+    let timeoutReference = null;
+    const timeout = 1000
+    document.getElementById('start').addEventListener('click', function(e){
+        if(timeoutReference==null){
+            timeoutReference = setInterval(function(){
+                const randomColor = getRandomColor()
+                document.querySelector('body').style.backgroundColor = randomColor
+            },timeout)
+        }
+    })
+
+    document.getElementById('stop').addEventListener('click', function(e){
+        if(timeoutReference!==null){
+            clearInterval(timeoutReference)
+            timeoutReference = null
+        }
+    })
+
+  </script>
+</html>
